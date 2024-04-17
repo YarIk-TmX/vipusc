@@ -1,8 +1,7 @@
 from PyQt5.QtWidgets import QPushButton, QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout
 from photoshop import win2, app2
 from victorina import main_window, app3
-
-
+from chislo import win4, app4
 #Создание окна
 app =QApplication([])
 win = QWidget()
@@ -12,7 +11,7 @@ win.setWindowTitle('Выбери что тебе надо:')
 x1 = QLabel('           Выбери что вам нужно:')
 foto_btn = QPushButton('Фотошоп')
 wic_btn = QPushButton('Викторина')
-
+chslo_btn = QPushButton('Угадай число')
 
 
 main_win = QHBoxLayout()
@@ -25,22 +24,38 @@ def photoshop():
 def victorina():
     main_window.show()
     app3.exec_()
+def chislo():
+    win4.show()
+    app4.exec_()
 
 
 winn.addLayout(main_win)
 main_win.addWidget(foto_btn)
 main_win.addWidget(wic_btn)
+main_win.addWidget(chslo_btn)
 
 win.setLayout(winn)
 
 foto_btn.clicked.connect(photoshop)
 wic_btn.clicked.connect(victorina)
+chslo_btn.clicked.connect(chislo)
 
 
     
 
 
 
+
+
+
+
+
+
+
+
+
+win.show()
+app.exec_()
 
 
 
