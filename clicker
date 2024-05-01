@@ -1,9 +1,10 @@
 from pygame import *
 score = 0
+inc = 1
 class GameSprite(sprite.Sprite):
-    def __init__(self, player_image, player_x, player_y, player_speed):
+    def __init__(self, player_image, player_x, player_y, player_speed, player_w, player_h):
         super().__init__()
-        self.image = transform.scale(image.load(player_image), (200, 200))    
+        self.image = transform.scale(image.load(player_image), (player_w, player_h))    
         self.speed = player_speed
         self.rect = self.image.get_rect()
         self.rect.x = player_x
@@ -13,14 +14,15 @@ class GameSprite(sprite.Sprite):
 
 class Player(GameSprite):
     pass
-        
+class Button(GameSprite):
+    pass  
 
 
 window = display.set_mode((700, 500))
 
-hero = Player('g.jpg', 250, 150, 150)
-    
+hero = Player('g.jpg', 250, 150, 150, 200, 200)
 
+magaz = Button('2.jpg', 650, 0, 150, 50, 50)   
 
 background = transform.scale(image.load('c.jpg'), (700, 500))
 font.init()
@@ -28,11 +30,24 @@ font2 = font.Font(None, 70)
 
 game = True
 while game:
+    text = font2.render('Счёт:' + str(score), 1, (255, 255, 255))
     window.blit(background, (0, 0))
     hero.reset()
-    text = font2.render('Счёт:' + str(score), 1, (255, 255, 255))
+    magaz.reset()
     window.blit(text, (10, 20))
     for e in event.get():
         if e.type == QUIT:
             game = False
+        if e.type == QUIT:
+            game = False
+        if e.type == MOUSEBUTTONDOWN:
+            if e.button == 1:
+                if e.pos[0] >= 290 and e.pos[0] <= 410: 
+                    if e.pos[1] >= 190 and e.pos[1] <= 310:
+                        score += inc
+                if e.pos[0] >= 650 and e.pos[0] <= 700:
+                    if e.pos[1] >= 0 and e.pos[1] <= 50:
+                        score -= 20
+                        inc+=1
+
     display.update()
