@@ -28,8 +28,10 @@ magaz = Button('x2.png', 650, 0, 150, 50, 50)
 magaz2 = Button('x3.png', 650, 50, 200, 50, 50)
 magaz3 = Button('x5.png', 650, 100, 250, 50, 50)
 magaz4 = Button('x50.jpg', 650, 150, 300, 50, 50)
-magaz5 = Button('x10.png', 650, 200, 350, 50, 50)
+magaz5 = Button('100.jpg', 650, 200, 350, 50, 50)
 magaz6 = Button('saturn.png', 650, 250, 400, 50, 50)
+magaz7 = Button('x500.webp', 650, 300, 450, 50 ,50)
+
 
 background = transform.scale(image.load('c.jpg'), (700, 500))
 font.init()
@@ -39,7 +41,8 @@ font4 = font.Font(None, 70)
 font5 = font.Font(None, 70)
 font6 = font.Font(None,70)
 font7 = font.Font(None,70)
-font8 = font.Font(None, 70)
+font8 = font.Font(None, 60)
+font9 = font.Font(None, 60)
 
 game = True
 while game:
@@ -50,6 +53,7 @@ while game:
     text5 = font6.render('500', 1, (255, 255, 255))
     text6 = font7.render('1000', 1, (255, 255, 255))
     text7 = font8.render('1000000', 1, (255, 255, 255))
+    text8 = font9.render('10000000', 1, (255, 255, 255))
     window.blit(background, (0, 0))
     hero.reset()
     magaz.reset()
@@ -57,6 +61,8 @@ while game:
     magaz3.reset()
     magaz4.reset()
     magaz5.reset()
+    magaz6.reset()
+    magaz7.reset()
     window.blit(text, (10, 20))
     window.blit(text2, (580, 0))
     window.blit(text3, (580, 50))
@@ -64,7 +70,8 @@ while game:
     window.blit(text5, (560, 150))
     window.blit(text6, (540, 200))
     window.blit(text7, (520, 200))
-    for e in event.get():
+    window.blit(text8, (450, 300))
+for e in event.get():
         if e.type == QUIT:
             game = False
         if e.type == QUIT:
@@ -104,7 +111,12 @@ while game:
                         if score - 1000000 >= 0:
                             score -= 10000000
                             inc+=1000
-                            hero.image = transform.scale(image.load('saturn.png'), (hero.player_w, hero.player_h))
+                            hero.image = transform.scale(image.load('st.jpg'), (hero.player_w, hero.player_h))
+                if e.pos[0] >= 650 and e.pos[0] <= 700:
+                    if e.pos[1] >= 300 and e.pos[1] <= 350:
+                        if score - 500000000  >= 0:
+                            score -= 500000000
+                            inc+=500
 
 
     display.update()
